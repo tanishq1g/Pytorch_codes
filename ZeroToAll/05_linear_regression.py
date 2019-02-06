@@ -50,8 +50,8 @@ for epoch in range(700):
 
     # Compute and print loss
     loss = criterion(y_pred, y_data)
-    print(epoch, loss.data.item())
-    # print(epoch, loss.data[0])
+    # .item prints value of the data at tensor
+    print(epoch, loss.data.item())   
 
     # Zero gradients, perform a backward pass, and update the weights.
     optimizer.zero_grad()
