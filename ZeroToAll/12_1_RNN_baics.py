@@ -14,6 +14,13 @@ o = [0, 0, 0, 1]
 # One cell RNN input_dim (4) -> output_dim (2). sequence: 5
 # https://pytorch.org/docs/stable/nn.html#rnn
 
+# input of shape (seq_len, batch, input_size): if batch_first is false
+# input of shape (batch, seq_length, input_size): if batch_first is false
+
+# h_0 of shape (num_layers * num_directions, batch, hidden_size)
+# output of shape (seq_len, batch, num_directions * hidden_size)
+# h_n (num_layers * num_directions, batch, hidden_size)
+
 # for seq length = 1, batch_size = 1
 cell = nn.RNN(input_size = 4, hidden_size = 2, batch_first = True)
 
