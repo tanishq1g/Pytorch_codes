@@ -1,6 +1,9 @@
 import torch
 import torch.nn as nn
 
+# link to understand dimensions
+# https://discuss.pytorch.org/t/why-3d-input-tensors-in-lstm/4455
+
 torch.manual_seed(777)  # reproducibility
 
 #            0    1    2    3    4
