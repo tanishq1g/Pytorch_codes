@@ -23,7 +23,7 @@ labels = torch.LongTensor(y_data)
 num_classes = 5
 input_size = 5
 embedding_size = 10  # embedding size
-hidden_size = 5  # output from the LSTM. 5 to directly predict one-hot
+hidden_size = 20  # output from the LSTM. 5 to directly predict one-hot
 batch_size = 1   # one sentence
 sequence_length = 6  # |ihello| == 6
 num_layers = 1  # one-layer rnn
@@ -34,7 +34,7 @@ class Model(nn.Module):
         super().__init__()
         # num_embeddings, embedding_size
         self.embedding = nn.Embedding(input_size, embedding_size)
-        self.rnn = nn.RNN(input_size = embedding_size, hidden_size = 5, batch_first = True)
+        self.rnn = nn.RNN(input_size = embedding_size, hidden_size = hidden_size, batch_first = True)
         self.fc = nn.Linear(hidden_size, num_classes)
 
     def forward(self, x):
@@ -52,7 +52,9 @@ class Model(nn.Module):
         # Input: (batch, seq_len, embedding_size)
         # h_0: (num_layers * num_directions, batch, hidden_size)
         out, _ = self.rnn(emb, h_0)
-        return self.fc(out.view(-1, num_classes))
+        print_tensor(out, 'out')
+        print_tensor(_, 'hidden')
+        return self.fc(out.view(-1, hidden_size))
 
 # Instantiate RNN model
 model = Model()
