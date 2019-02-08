@@ -1,3 +1,4 @@
 ZeroToAll/data/mnist_data
 ZeroToAll/slides
 .vscode
+__pycache__/
